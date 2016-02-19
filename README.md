@@ -21,8 +21,11 @@ In development, you can optionall store all variables in a [`.env` file](https:/
 
 ```js
 import { createServer } from 's3-thumb-server'
-createServer().listen(8080)
+const server = createServer()
+server.listen(8080)
 ```
+
+`server` is a standard [node HTTP server](https://nodejs.org/api/http.html#http_class_http_server).
 
 ## URL Format
 
