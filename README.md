@@ -17,7 +17,7 @@ All configuration is done through the use of environment variables.
     SECRET_KEY              A cryptographically secure string used to
                             generate URL signatures (optional)
 
-In development, you can optionall store all variables in a [`.env` file](https://www.npmjs.com/package/dotenv) at the root of the repo. After setting up all configuration variables, use `createServer` to create a server instance:
+After setting all environment variables, use `createServer` to create a server instance:
 
 ```js
 import { createServer } from 's3-thumb-server'
