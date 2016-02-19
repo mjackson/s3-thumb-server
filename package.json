@@ -1,0 +1,21 @@
+{
+  "name": "s3-thumb-server",
+  "version": "1.0.0",
+  "description": "A small HTTP server for serving thumbnail images from S3",
+  "author": "Michael Jackson",
+  "license": "MIT",
+  "main": "index.js",
+  "config": {
+    "port": 5000
+  },
+  "dependencies": {
+    "aws-sdk": "^2.2.37",
+    "babel-core": "^6.5.2",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-register": "^6.5.2",
+    "sharp": "^0.13.0"
+  },
+  "devDependencies": {
+    "dotenv": "^2.0.0"
+  }
+}
