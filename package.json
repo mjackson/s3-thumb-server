@@ -1,6 +1,6 @@
 {
   "name": "s3-thumb-server",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A small HTTP server for serving thumbnail images from S3",
   "author": "Michael Jackson",
   "license": "MIT",
