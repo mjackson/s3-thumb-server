@@ -1,4 +1,6 @@
-require('babel-register')
+require('babel-register')({
+  presets: [ 'es2015' ]
+})
 
 if (process.env.NODE_ENV !== 'production')
   require('dotenv').config()
