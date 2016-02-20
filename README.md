@@ -27,7 +27,7 @@ server.listen(8080)
 
 ## URL Format
 
-In s3-thumb-server, the URL is the API. The server recognizes URLs in the format `/:size/:key` where:
+In s3-thumb-server, the URL is the API. The server recognizes URLs in the format `/size/key` where:
 
     size            A string in the format WxH, e.g. 120x100
     key             The key of the image in S3
@@ -42,12 +42,12 @@ The server has the ability to automatically reject requests for resources that h
 import { createServer } from 's3-thumb-server'
 
 const server = createServer({
-  ...
+  // ...
   secretKey: 'something secret'
 })
 ```
 
-Later, you can use that same `secretKey` to generate a URL signature that should be prepended to the URL pathname (i.e. `/:signature/:size/:key`.
+This server will recognize URLs like `/signature/size/key`, where `signature` is a signed value that may be generated using the secret key and the S3 key for a given object.
 
 ```js
 import { generateSignature } from 's3-thumb-server'
