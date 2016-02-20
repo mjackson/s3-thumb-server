@@ -15,6 +15,10 @@ export function sendInvalidSignatureError(res, signature) {
   sendText(res, 403, 'Invalid signature: ' + signature)
 }
 
+export function sendInvalidKeyError(res, key) {
+  sendText(res, 403, 'Invalid key:' + key)
+}
+
 export function sendNotFoundError(res, what) {
   sendText(res, 404, 'Not found: ' + what)
 }

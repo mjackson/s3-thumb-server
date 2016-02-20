@@ -8,20 +8,18 @@ s3-thumb-server is a small HTTP server that serves thumbnail images from S3.
 
 ## Configuration and Usage
 
-All configuration is done through the use of environment variables.
-
-    S3_BUCKET               The name of your S3 bucket (required)
-    AWS_ACCESS_KEY_ID       Your AWS access key ID (required)
-    AWS_SECRET_ACCESS_KEY   Your AWS secret access key (required)
-    AWS_REGION              Your AWS region, defaults to us-west-1
-    SECRET_KEY              A cryptographically secure string used to
-                            generate URL signatures (optional)
-
-After setting all environment variables, use `createServer` to create a server instance:
+Use `createServer` to create a server instance, passing it all the information it needs to connect to S3:
 
 ```js
 import { createServer } from 's3-thumb-server'
-const server = createServer()
+
+const server = createServer({
+  accessKeyId: '...',         // Your AWS access key ID, required
+  secretAccessKey: '...',     // Your AWS secret access key, required
+  region: 'us-west-1',        // The AWS region that contains your S3 bucket
+  s3Bucket: '...'             // The name of your S3 bucket
+})
+
 server.listen(8080)
 ```
 
@@ -29,17 +27,29 @@ server.listen(8080)
 
 ## URL Format
 
-s3-thumb-server recognizes URLs in the format `/:signature/:size/:key` where:
+In s3-thumb-server, the URL is the API. The server recognizes URLs in the format `/:size/:key` where:
 
-    signature       The URL signature
     size            A string in the format WxH, e.g. 120x100
     key             The key of the image in S3
 
-To generate the URL signature for a given key, use:
+You may omit either the width or the height to constrain the resize operation by only one dimension. For example, `200x` will constrain the width to 200 pixels and automatically calculate the height preserving the aspect ratio of the original. Likewise, `x200` will constrain by height.
+
+## Signing URLs
+
+The server has the ability to automatically reject requests for resources that have not been signed using a cryptographically secure key. To use this feature, pass a `secretKey` option to `createServer`:
+
+```js
+import { createServer } from 's3-thumb-server'
+
+const server = createServer({
+  ...
+  secretKey: 'something secret'
+})
+```
+
+Later, you can use that same `secretKey` to generate a URL signature that should be prepended to the URL pathname (i.e. `/:signature/:size/:key`.
 
 ```js
 import { generateSignature } from 's3-thumb-server'
-const signature = generateSignature(key)
+const signature = generateSignature(secretKey, key)
 ```
-
-When no `$SECRET_KEY` environment variable is present, the `signature` is silently ignored.
