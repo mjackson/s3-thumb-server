@@ -9,7 +9,8 @@
     "lib"
   ],
   "scripts": {
-    "build": "rimraf lib && babel ./modules -d lib"
+    "build": "rimraf lib && babel ./modules -d lib",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "aws-sdk": "^2.2.37",
