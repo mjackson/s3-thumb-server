@@ -4,7 +4,13 @@
   "description": "A small HTTP server for serving thumbnail images from S3",
   "author": "Michael Jackson",
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "rimraf lib && babel ./modules -d lib"
+  },
   "dependencies": {
     "aws-sdk": "^2.2.37",
     "babel-core": "^6.5.2",
@@ -12,5 +18,9 @@
     "babel-register": "^6.5.2",
     "invariant": "^2.2.0",
     "sharp": "^0.13.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "rimraf": "^2.5.2"
   }
 }
