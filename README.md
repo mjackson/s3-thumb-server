@@ -16,8 +16,8 @@ import { createServer } from 's3-thumb-server'
 const server = createServer({
   accessKeyId: '...',         // Your AWS access key ID, required
   secretAccessKey: '...',     // Your AWS secret access key, required
-  region: 'us-west-1',        // The AWS region that contains your S3 bucket
-  s3Bucket: '...'             // The name of your S3 bucket
+  region: 'us-west-1',        // The AWS region of your S3 bucket, defaults to "us-west-1"
+  s3Bucket: '...'             // The name of your S3 bucket, required
 })
 
 server.listen(8080)
@@ -36,7 +36,7 @@ You may omit either the width or the height to constrain the resize operation by
 
 ## Signing URLs
 
-The server has the ability to automatically reject requests for resources that have not been signed using a cryptographically secure key. To use this feature, pass a `secretKey` option to `createServer`:
+The server has the ability to automatically reject requests that have not been signed using a cryptographically secure key. To use this feature, pass a `secretKey` option to `createServer`:
 
 ```js
 import { createServer } from 's3-thumb-server'
