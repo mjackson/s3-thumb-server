@@ -25,6 +25,19 @@ server.listen(8080)
 
 `server` is a standard [node HTTP server](https://nodejs.org/api/http.html#http_class_http_server).
 
+If you'd like to use s3-thumb-server as part of a larger site, using e.g. a framework like [express](http://expressjs.com/), you can use the `createRequestHandler` function directly. As its name suggests, this function returns another function that can be used as the request handler in a standard node HTTP server. This function accepts the same options as `createServer`.
+
+```js
+import express from 'express'
+import { createRequestHandler } from 's3-thumb-server'
+
+const app = express()
+app.use(express.static('public'))
+app.use(createRequestHandler())
+
+// ...
+```
+
 ## URL Format
 
 In s3-thumb-server, the URL is the API. The server recognizes URLs in the format `/size/key` where:
