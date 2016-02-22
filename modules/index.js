@@ -73,7 +73,7 @@ function parseURL(pathname) {
   }
 }
 
-function createRequestHandler(options) {
+export function createRequestHandler(options={}) {
   const { accessKeyId, secretAccessKey, s3Bucket, secretKey } = options
   const region = options.region || 'us-west-1'
 
@@ -134,7 +134,10 @@ function createRequestHandler(options) {
   }
 }
 
-export function createServer(options={}) {
+/**
+ * Creates and returns an HTTP server instance.
+ */
+export function createServer(options) {
   return http.createServer(
     createRequestHandler(options)
   )
