@@ -1,9 +1,12 @@
 import sharp from 'sharp'
 
 export function createThumb(object, [ width, height ], callback) {
-  sharp(object.Body)
-    .rotate()
-    .resize(width, height)
+  const thumb = sharp(object.Body).rotate()
+
+  if (width || height)
+    thumb.resize(width, height)
+
+  thumb
     .progressive()
     .toBuffer(function (error, buffer) {
       if (error) {
