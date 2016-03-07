@@ -1,10 +1,22 @@
 # s3-thumb-server
 
-s3-thumb-server is a small HTTP server that serves thumbnail images from S3.
+s3-thumb-server is an HTTP server that serves thumbnails of images stored on S3.
 
 ## Installation
 
-    $ npm install s3-thumb-server
+Using [npm](https://www.npmjs.com/):
+
+    $ npm install --save s3-thumb-server
+
+Then, use as you would anything else:
+
+```js
+// using an ES6 transpiler, like babel
+import { createServer } from 's3-thumb-server'
+
+// not using an ES6 transpiler
+var createServer = require('s3-thumb-server').createServer
+```
 
 ## Configuration and Usage
 
