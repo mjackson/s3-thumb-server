@@ -11,10 +11,10 @@ Using [npm](https://www.npmjs.com/):
 Then, use as you would anything else:
 
 ```js
-// using an ES6 transpiler, like babel
+// using ES6 modules
 import { createServer } from 's3-thumb-server'
 
-// not using an ES6 transpiler
+// using CommonJS modules
 var createServer = require('s3-thumb-server').createServer
 ```
 
