@@ -12,7 +12,7 @@ import {
   sendImage
 } from './ResponseUtils'
 
-function constantTimeStringCompare(a, b) {
+const constantTimeStringCompare = (a, b) => {
   if (a.length !== b.length)
     return false
 
@@ -25,28 +25,24 @@ function constantTimeStringCompare(a, b) {
   return isEqual
 }
 
-function verifySignature(secretKey, key, signature) {
-  return constantTimeStringCompare(
+export const generateSignature = (secretKey, key) =>
+  crypto.createHmac('sha1', secretKey).update(key).digest('hex').substring(0, 8)
+
+const verifySignature = (secretKey, key, signature) =>
+  constantTimeStringCompare(
     generateSignature(secretKey, key),
     signature
   )
-}
 
-export function generateSignature(secretKey, key) {
-  return crypto.createHmac('sha1', secretKey).update(key).digest('hex').substring(0, 8)
-}
+const parseDimension = (string) =>
+  parseInt(string, 10) || null
 
-function parseDimension(string) {
-  return parseInt(string, 10) || null
-}
-
-function parseSize(string) {
-  return string.split('x', 2).map(parseDimension)
-}
+const parseSize = (string) =>
+  string.split('x', 2).map(parseDimension)
 
 const SignedURLFormat = /^\/([^\/]+)\/([^\/]+)\/(.+)$/
 
-function parseSignedURL(pathname) {
+const parseSignedURL = (pathname) => {
   const match = SignedURLFormat.exec(pathname)
 
   if (match == null)
@@ -61,7 +57,7 @@ function parseSignedURL(pathname) {
 
 const URLFormat = /^\/([^\/]+)\/(.+)$/
 
-function parseURL(pathname) {
+const parseURL = (pathname) => {
   const match = URLFormat.exec(pathname)
 
   if (match == null)
@@ -73,7 +69,7 @@ function parseURL(pathname) {
   }
 }
 
-export function createRequestHandler(options={}) {
+export const createRequestHandler = (options = {}) => {
   const { accessKeyId, secretAccessKey, s3Bucket, secretKey } = options
   const region = options.region || 'us-west-1'
 
@@ -98,7 +94,7 @@ export function createRequestHandler(options={}) {
     region
   })
 
-  return function handleRequest(req, res) {
+  const handleRequest = (req, res) => {
     const url = secretKey ? parseSignedURL(req.url) : parseURL(req.url)
 
     if (url == null)
@@ -112,7 +108,7 @@ export function createRequestHandler(options={}) {
     s3.getObject({
       Bucket: s3Bucket,
       Key: key
-    }, function (error, object) {
+    }, (error, object) => {
       if (error) {
         if (error.code === 'NoSuchKey') {
           sendNotFoundError(res, 'Object with key "' + key + '"')
@@ -122,7 +118,7 @@ export function createRequestHandler(options={}) {
       } else if (object.ContentType.substring(0, 6) !== 'image/') {
         sendInvalidKeyError(res, error)
       } else {
-        createThumb(object, size, function (error, thumb) {
+        createThumb(object, size, (error, thumb) => {
           if (error) {
             sendServerError(res, error)
           } else {
@@ -132,13 +128,14 @@ export function createRequestHandler(options={}) {
       }
     })
   }
+
+  return handleRequest
 }
 
 /**
  * Creates and returns an HTTP server instance.
  */
-export function createServer(options) {
-  return http.createServer(
+export const createServer = (options) =>
+  http.createServer(
     createRequestHandler(options)
   )
-}

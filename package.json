@@ -9,6 +9,7 @@
     "lib"
   ],
   "scripts": {
+    "lint": "eslint modules",
     "build": "rimraf lib && babel ./modules -d lib",
     "prepublish": "npm run build",
     "release": "node ./scripts/release.js"
@@ -21,7 +22,11 @@
   "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-core": "^6.5.2",
+    "babel-eslint": "^5.0.0",
     "babel-preset-es2015": "^6.5.0",
+    "eslint": "^2.2.0",
+    "eslint-config-airbnb": "^6.1.0",
+    "eslint-plugin-react": "^4.2.1",
     "readline-sync": "^1.4.1",
     "rimraf": "^2.5.2"
   }

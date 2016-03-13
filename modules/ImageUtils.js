@@ -1,6 +1,6 @@
 import sharp from 'sharp'
 
-export function createThumb(object, [ width, height ], callback) {
+export const createThumb = (object, [ width, height ], callback) => {
   const thumb = sharp(object.Body).rotate()
 
   if (width || height)
@@ -8,7 +8,7 @@ export function createThumb(object, [ width, height ], callback) {
 
   thumb
     .progressive()
-    .toBuffer(function (error, buffer) {
+    .toBuffer((error, buffer) => {
       if (error) {
         callback(error)
       } else {
