@@ -1,4 +1,10 @@
-# s3-thumb-server
+# s3-thumb-server [![Travis][build-badge]][build] [![npm package][npm-badge]][npm]
+
+[build-badge]: https://img.shields.io/travis/mjackson/s3-thumb-server/master.svg?style=flat-square
+[build]: https://travis-ci.org/mjackson/s3-thumb-server
+
+[npm-badge]: https://img.shields.io/npm/v/s3-thumb-server.svg?style=flat-square
+[npm]: https://www.npmjs.org/package/s3-thumb-server
 
 s3-thumb-server is an HTTP server that serves thumbnails of images stored on S3.
 
