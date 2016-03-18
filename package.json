@@ -12,8 +12,8 @@
     "test": "npm run lint",
     "lint": "eslint modules",
     "build": "rimraf lib && babel ./modules -d lib",
-    "prepublish": "npm run build",
-    "release": "node ./scripts/release.js"
+    "release": "node ./scripts/release.js",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "aws-sdk": "^2.2.37",
