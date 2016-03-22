@@ -30,5 +30,10 @@
     "eslint-plugin-react": "^4.2.1",
     "readline-sync": "^1.4.1",
     "rimraf": "^2.5.2"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }
