@@ -13,9 +13,6 @@ import {
 } from './ResponseUtils'
 
 const constantTimeStringCompare = (a, b) => {
-  if (a.length !== b.length)
-    return false
-
   let isEqual = true
 
   for (let i = 0; i < a.length; ++i)
