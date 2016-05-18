@@ -16,7 +16,7 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "aws-sdk": "^2.2.37",
+    "aws-sdk": "^2.3.13",
     "invariant": "^2.2.0",
     "sharp": "^0.14.1"
   },
