@@ -4,7 +4,8 @@
     "import"
   ],
   "extends": [
-    "eslint:recommended"
+    "eslint:recommended",
+    "plugin:import/errors"
   ],
   "env": {
     "node": true
