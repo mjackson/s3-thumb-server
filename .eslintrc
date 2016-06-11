@@ -6,6 +6,7 @@
     "node": true
   },
   "rules": {
+    "prefer-arrow-callback": 2,
     "semi": [ 2, "never" ]
   }
 }
