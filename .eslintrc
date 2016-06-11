@@ -1,7 +1,11 @@
 {
-  "extends": "eslint:recommended",
   "parser": "babel-eslint",
-  "plugins": [ "import" ],
+  "plugins": [
+    "import"
+  ],
+  "extends": [
+    "eslint:recommended"
+  ],
   "env": {
     "node": true
   },
