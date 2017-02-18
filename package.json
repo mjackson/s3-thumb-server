@@ -28,7 +28,7 @@
     "eslint": "^2.5.1",
     "eslint-plugin-import": "^1.7.0",
     "readline-sync": "^1.4.1",
-    "rimraf": "^2.5.2"
+    "rimraf": "^2.6.0"
   },
   "babel": {
     "presets": [
